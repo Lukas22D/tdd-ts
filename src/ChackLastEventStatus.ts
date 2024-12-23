@@ -6,6 +6,9 @@ export default class ChackLastEventStatus{
 
     async perform({ groupId }: { groupId: string}): Promise<string> {
         const event = await this.loadLastEventRepository.loadlastEvent({groupId: groupId});
-        return event === undefined ?'done': 'active';
+        if (event === undefined) return 'done';
+        const now = new Date();
+        return event.endDate > now ? 'active' : 'inReview';
+
     };
 }

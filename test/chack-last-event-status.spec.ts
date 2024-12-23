@@ -59,5 +59,17 @@ describe('ChackLastEventStatus', () => {
 
         expect(status).toBe('active');
     });
+
+    it('should return status active when now is after event end time', async () => {
+
+        const {sut, loadLastEventRepository} = makeSut();
+
+        loadLastEventRepository.output = {
+            endDate: new Date(new Date().getTime() - 1)
+        };
+        const status = await sut.perform({ groupId: 'any_grup_id'});
+
+        expect(status).toBe('inReview');
+    });
 });
 
