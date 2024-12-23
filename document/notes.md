@@ -6,6 +6,8 @@
 - Improper Instantiation
 - High Coupling
 - Test Code in Production
+- Duplicate Code
+- Shotgun Surgery
 
 # Design Patterns/Principles/Conventions
 - You ain't Gonna need it (YAGNI)
@@ -15,5 +17,7 @@
 - Arrange, Act, Assert (AAA)
 - Dependecy Injection (DI)
 - Repository Pattern
-- Test Doubles (Mock)
+- Test Doubles (Mock, Stub, Spy)
 - Small Commits
+- System Under Test(SUT)
+- Strategy Pattern

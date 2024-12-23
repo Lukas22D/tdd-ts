@@ -1,4 +1,4 @@
 export default interface LoadLastEventRepository {
     
-    loadlastEvent: (groupId: string) => Promise<void>;
+    loadlastEvent: (groupId: string) => Promise<undefined>;
 }
