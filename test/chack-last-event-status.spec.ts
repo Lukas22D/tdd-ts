@@ -11,11 +11,18 @@ class LoadLastEventRepositoryMock implements LoadLastEventRepository{
     }
 }
 
+type SutOutput = { sut: ChackLastEventStatus, loadLastEventRepository: LoadLastEventRepositoryMock };
+
+const makeSut = (): SutOutput => {
+    const loadLastEventRepository = new LoadLastEventRepositoryMock();
+    const sut = new ChackLastEventStatus(loadLastEventRepository);
+    return {sut, loadLastEventRepository};
+}
+
 
 describe('ChackLastEventStatus', () => {
     it('should get last event data', async () => {
-        const loadLastEventRepository = new LoadLastEventRepositoryMock();
-        const sut = new ChackLastEventStatus(loadLastEventRepository);
+        const {sut, loadLastEventRepository} = makeSut();
 
         await sut.perform('any_grup_id');
 
@@ -23,9 +30,10 @@ describe('ChackLastEventStatus', () => {
     });
 
     it('should return status done when group has no event', async () => {
-        const loadLastEventRepository = new LoadLastEventRepositoryMock();
+
+        const {sut, loadLastEventRepository} = makeSut();
+
         loadLastEventRepository.output = undefined;
-        const sut = new ChackLastEventStatus(loadLastEventRepository);
 
         const status = await sut.perform('any_grup_id');
 
