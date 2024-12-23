@@ -4,8 +4,8 @@ export default class ChackLastEventStatus{
 
     constructor(private readonly loadLastEventRepository: LoadLastEventRepository){}
 
-    async perform(grupId: string): Promise<string> {
-        await this.loadLastEventRepository.loadlastEvent(grupId);
-        return 'done';
+    async perform({ groupId }: { groupId: string}): Promise<string> {
+        const event = await this.loadLastEventRepository.loadlastEvent({groupId: groupId});
+        return event === undefined ?'done': 'active';
     };
 }

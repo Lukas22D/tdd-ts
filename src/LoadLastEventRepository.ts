@@ -1,4 +1,5 @@
 export default interface LoadLastEventRepository {
     
-    loadlastEvent: (groupId: string) => Promise<undefined>;
+    loadlastEvent: ( input : { groupId: string}) => Promise<{endDate: Date} | undefined>;
 }
+
